@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
 		password: {
 			type: String,
 			required: true,
-			select: false
+            minlength: 6,
 		},
 		verified: {
 			type: Boolean,
@@ -36,8 +36,8 @@ userSchema.pre('save', async function () {
     this.password = await bcrypt.hash(this.password, 10);
 });
 
-userSchema.methods.comparePassword = function (candidatePassword) {
-    return bcrypt.compare(candidatePassword, this.password);
+userSchema.methods.comparePassword = async function (candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
 };
 
 
