@@ -2,6 +2,9 @@ import "dotenv/config";
 import app from "./src/app.js";
 
 import connectToDB from "./src/config/db.js";
+import { testAI } from "./src/services/ai.service.js";
+
+testAI();
 
 connectToDB();
 

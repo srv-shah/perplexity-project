@@ -60,9 +60,6 @@ export async function login(req, res){
 
     const user = await userModel.findOne({ email });
 
-    console.log("Entered password:", password);
-    console.log("Stored password:", user.password);
-
     if(!user){
         return res.status(400).json({
             message: "User with this email does not exist.",
